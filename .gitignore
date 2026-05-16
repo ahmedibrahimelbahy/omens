@@ -46,6 +46,8 @@ next-env.d.ts
 
 # screenshot debug artifacts
 m1-*.png
+header-check-*.png
+signup-en-*.png
 temporary screenshots/
 
 .vercel
