@@ -1,26 +1,283 @@
 @import "tailwindcss";
 
+/* ─────────────────────────────────────────────────────────────────────────────
+   Omens — Design tokens
+   Calm, dignified, magazine-y. Gold (sparingly), deep ink, cream.
+   ───────────────────────────────────────────────────────────────────────────── */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand palette */
+  --gold: #c9a961;
+  --gold-soft: #e2c98a;
+  --gold-deep: #a38842;
+  --ink: #0d2240;
+  --ink-soft: #1a3358;
+  --cream: #fdf8f3;
+  --cream-deep: #f5ecdf;
+  --received: #10b981;
+  --received-soft: #d4f3e6;
+  --muted: #8a8378;
+  --muted-soft: #c9c0b3;
+  --line: rgba(13, 34, 64, 0.08);
+  --line-strong: rgba(13, 34, 64, 0.16);
+
+  /* Surfaces (layered, not flat) */
+  --surface-0: var(--cream);
+  --surface-1: #fffaf3;
+  --surface-2: #ffffff;
+
+  /* Tinted shadows — never flat black */
+  --shadow-soft: 0 1px 2px rgba(13, 34, 64, 0.04),
+    0 8px 24px -8px rgba(13, 34, 64, 0.08);
+  --shadow-lift: 0 2px 4px rgba(13, 34, 64, 0.05),
+    0 18px 40px -16px rgba(13, 34, 64, 0.18);
+  --shadow-gold: 0 6px 24px -8px rgba(201, 169, 97, 0.35);
+
+  /* Type */
+  --font-display: var(--font-fraunces);
+  --font-body: var(--font-inter);
+  --font-arabic: var(--font-plex-arabic);
+
+  /* Editorial type scale (mobile-first; bumped by clamp at lg) */
+  --fs-eyebrow: 0.7rem;       /* 11.2px */
+  --fs-body-sm: 0.9375rem;    /* 15px */
+  --fs-body: 1.0625rem;       /* 17px */
+  --fs-body-lg: 1.1875rem;    /* 19px */
+  --fs-h6: 1.125rem;
+  --fs-h5: 1.375rem;
+  --fs-h4: 1.625rem;
+  --fs-h3: clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem);
+  --fs-h2: clamp(2.25rem, 1.6rem + 2.6vw, 3.75rem);
+  --fs-h1: clamp(2.75rem, 1.6rem + 4.6vw, 5.5rem);
+  --fs-display: clamp(3.25rem, 1.6rem + 6.5vw, 7rem);
 }
 
+/* Tailwind v4 theme tokens — exposes palette as utilities */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-gold-deep: var(--gold-deep);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-cream: var(--cream);
+  --color-cream-deep: var(--cream-deep);
+  --color-received: var(--received);
+  --color-received-soft: var(--received-soft);
+  --color-muted-fg: var(--muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-surface-0: var(--surface-0);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+
+  --font-display: var(--font-display);
+  --font-sans: var(--font-body);
+  --font-arabic: var(--font-arabic);
+
+  --shadow-soft: var(--shadow-soft);
+  --shadow-lift: var(--shadow-lift);
+  --shadow-gold: var(--shadow-gold);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─────────────────────────────────────────────────────────────────────────────
+   Base layer
+   ───────────────────────────────────────────────────────────────────────────── */
+
+html {
+  background: var(--surface-0);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: var(--fs-body);
+  line-height: 1.65;
+  font-feature-settings: "ss01", "cv11", "kern";
+  font-variant-numeric: lining-nums proportional-nums;
+}
+
+/* Arabic gets its native face automatically */
+html[lang="ar"] body,
+[lang="ar"] {
+  font-family: var(--font-arabic), system-ui, sans-serif;
+  /* Plex Arabic reads slightly larger; nudge body down a hair */
+  font-size: 1rem;
+  line-height: 1.85;
+  letter-spacing: 0;
+}
+
+/* RTL helpers */
+[dir="rtl"] {
+  text-align: right;
+}
+
+/* Selection — gold over ink */
+::selection {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+/* Focus rings — never the generic blue */
+*:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Editorial typography utilities
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+  font-feature-settings: "ss01", "ss02", "kern";
+}
+
+.text-display {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: var(--fs-display);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  font-weight: 400;
+}
+
+.text-h1 {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: var(--fs-h1);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+}
+
+.text-h2 {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: var(--fs-h2);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  font-weight: 400;
+}
+
+.text-h3 {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: var(--fs-h3);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+
+.text-h4 {
+  font-size: var(--fs-h4);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
+.text-eyebrow {
+  font-size: var(--fs-eyebrow);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.text-lede {
+  font-size: var(--fs-body-lg);
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+/* Arabic adjustments — display serif doesn't carry Arabic; fall back to Plex */
+[lang="ar"] .text-display,
+[lang="ar"] .text-h1,
+[lang="ar"] .text-h2,
+[lang="ar"] .text-h3 {
+  font-family: var(--font-arabic), Georgia, serif;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.25;
+}
+
+[lang="ar"] .text-eyebrow {
+  letter-spacing: 0.12em;
+  font-weight: 700;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Decorative atmosphere — subtle paper-grain & gold whisper
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.bg-paper {
+  background-color: var(--cream);
+  background-image:
+    radial-gradient(
+      1200px 600px at 50% -10%,
+      rgba(201, 169, 97, 0.08),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 500px at 110% 110%,
+      rgba(13, 34, 64, 0.04),
+      transparent 70%
+    );
+}
+
+.grain {
+  position: relative;
+}
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* Hairline divider with a tiny gold dot — appears throughout */
+.rule {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--muted);
+}
+.rule::before,
+.rule::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+.rule .dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 9999px;
+  background: var(--gold);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Motion — keep it tasteful: transform + opacity only
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: no-preference) {
+  .fade-rise {
+    animation: fadeRise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .fade-rise-delay-1 { animation-delay: 0.08s; }
+  .fade-rise-delay-2 { animation-delay: 0.18s; }
+  .fade-rise-delay-3 { animation-delay: 0.28s; }
+  .fade-rise-delay-4 { animation-delay: 0.4s; }
+}
+
+@keyframes fadeRise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

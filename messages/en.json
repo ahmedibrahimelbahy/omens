@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "title": "Omens — Rent guaranteed. Trust earned.",
+    "description": "Omens pays landlords on the 1st of every month — even if their tenant hasn't paid us yet. Every payment becomes a portable signal of trust."
+  },
+  "nav": {
+    "marketing": "Marketing",
+    "landlord": "Landlord",
+    "tenant": "Tenant",
+    "story": "Story",
+    "join": "Join the waitlist"
+  },
+  "hero": {
+    "eyebrow": "For landlords in Cairo",
+    "headlineA": "Rent on the 1st.",
+    "headlineB": "Every month.",
+    "headlineC": "Without the fight.",
+    "lede": "Omens pays your rent on the first of every month — even before your tenant has paid us. You collect peace of mind. We handle the rest.",
+    "cta": "Join the waitlist",
+    "ctaHint": "Pilot starts in Cairo · Summer 2026"
+  },
+  "system": {
+    "title": "Design system",
+    "subtitle": "The foundation",
+    "paragraph": "Every surface in Omens is built on a calm, three-color palette, an editorial type scale, and a quiet sense of restraint. The product carries weight without raising its voice.",
+    "swatchGold": "Gold — used sparingly",
+    "swatchInk": "Ink — body & headlines",
+    "swatchCream": "Cream — the base surface",
+    "swatchReceived": "Received — only for omen moments",
+    "switchTo": "العربية"
+  },
+  "moment": {
+    "label": "An omen received",
+    "subtitle": "Every payment is a signal of trust."
+  },
+  "landlord": {
+    "greeting": "Good morning, Farida",
+    "subgreeting": "Four apartments. Heliopolis. Your evenings, returned.",
+    "payoutEyebrow": "Your next payout",
+    "payoutIn": "in {days} days",
+    "payoutOn": "on {date}",
+    "portfolio": "Portfolio",
+    "portfolioSubtitle": "Each tenant carries an Omens Score — a portable signal of how they pay.",
+    "activity": "Recent omens",
+    "viewAll": "View all",
+    "perMonth": "per month",
+    "score": "Omens Score",
+    "statusReceived": "Received",
+    "statusDue": "Due",
+    "statusLate": "Late · day {days}",
+    "statusReminderSent": "Reminder sent",
+    "monthApril": "April",
+    "monthMarch": "March",
+    "actionDownload": "Download statement",
+    "actionInvite": "Invite a tenant",
+    "ledgerEyebrow": "Ledger",
+    "ledgerWillBe": "Will be paid out",
+    "ledgerEarned": "Earned this month",
+    "ledgerFee": "Omens service",
+    "ledgerNet": "You receive",
+    "feeNote": "We keep 7% in exchange for guaranteed timing and zero collection labor."
+  },
+  "tenant": {
+    "greeting": "Hi, Mostafa",
+    "subgreeting": "Apartment 12 · Heliopolis · with Farida M.",
+    "dueEyebrow": "Rent for May",
+    "dueDate": "Due {date}",
+    "payNow": "Pay now",
+    "payMethods": "InstaPay · Vodafone Cash · Fawry",
+    "scoreEyebrow": "Your Omens Score",
+    "scoreLabelExcellent": "Excellent",
+    "scoreLabelGood": "Good",
+    "scoreLabelFair": "Fair",
+    "scoreBody": "A trusted tenant. Your record is portable — landlords in the Omens network can see your standing.",
+    "history": "Payment history",
+    "paidOn": "Paid {date}",
+    "thread": "Thread with Omens",
+    "threadIntro": "We'll only message you about rent. Never marketing. Promise.",
+    "ramadanNote": "Ramadan-aware flexible plans available if you ever need a one-month buffer. Just ask.",
+    "trustWord": "Amana",
+    "trustTagline": "A trust kept on the first of every month."
+  },
+  "common": {
+    "currency": "EGP",
+    "backToHome": "Back to marketing site",
+    "viewLandlord": "View the landlord",
+    "viewTenant": "View the tenant"
+  },
+  "footer": {
+    "trustWord": "Amana",
+    "tagline": "A trust kept on the first of every month."
+  }
+}

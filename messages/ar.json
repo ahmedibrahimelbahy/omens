@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "title": "Omens — إيجارك مضمون. ثقتك مكسوبة.",
+    "description": "Omens بتدفع للمُلّاك أول كل شهر — حتى لو لسه المستأجر ما دفعش لنا. كل دفعة بتبقى إشارة ثقة بتمشي معاك."
+  },
+  "nav": {
+    "marketing": "الصفحة الرئيسية",
+    "landlord": "المالك",
+    "tenant": "المستأجر",
+    "story": "حكايتنا",
+    "join": "انضم لقائمة الانتظار"
+  },
+  "hero": {
+    "eyebrow": "لمُلّاك العقارات في القاهرة",
+    "headlineA": "إيجارك في الأول.",
+    "headlineB": "كل شهر.",
+    "headlineC": "بدون عِراك.",
+    "lede": "Omens بتدفعلك إيجارك أول كل شهر — حتى قبل ما المستأجر يدفعنا. أنت بتاخد راحة بالك، وإحنا بناخد الباقي على عاتقنا.",
+    "cta": "انضم لقائمة الانتظار",
+    "ctaHint": "التجربة الأولى في القاهرة · صيف ٢٠٢٦"
+  },
+  "system": {
+    "title": "نظام التصميم",
+    "subtitle": "الأساس",
+    "paragraph": "كل صفحة في Omens مبنية على لوحة ألوان هادئة من ثلاث درجات، ومقاس طباعي بأسلوب المجلات، وإحساس راقٍ بالتحفّظ. المنتج يحمل ثِقَله من غير ما يرفع صوته.",
+    "swatchGold": "الذهبي — يُستخدم بحساب",
+    "swatchInk": "الحبر — للنصوص والعناوين",
+    "swatchCream": "الكريمي — السطح الأساسي",
+    "swatchReceived": "تَمَّ الاستلام — للحظات البشارة فقط",
+    "switchTo": "English"
+  },
+  "moment": {
+    "label": "بشارة وصلت",
+    "subtitle": "كل دفعة إشارة ثقة."
+  },
+  "landlord": {
+    "greeting": "صباح الفل يا فريدة",
+    "subgreeting": "أربع شقق. هليوبوليس. ولياليك رجعت لك.",
+    "payoutEyebrow": "صرفك القادم",
+    "payoutIn": "خلال {days} أيام",
+    "payoutOn": "يوم {date}",
+    "portfolio": "محفظتك",
+    "portfolioSubtitle": "كل مستأجر معاه نقاط Omens — إشارة ثقة بتمشي معاه أينما راح.",
+    "activity": "آخر البشائر",
+    "viewAll": "عرض الكل",
+    "perMonth": "شهرياً",
+    "score": "نقاط Omens",
+    "statusReceived": "تَمَّ الاستلام",
+    "statusDue": "مستحق",
+    "statusLate": "متأخر · يوم {days}",
+    "statusReminderSent": "تم إرسال تذكير",
+    "monthApril": "أبريل",
+    "monthMarch": "مارس",
+    "actionDownload": "تنزيل كشف الحساب",
+    "actionInvite": "ادعِ مستأجر",
+    "ledgerEyebrow": "الدفتر",
+    "ledgerWillBe": "هيُصرف لك",
+    "ledgerEarned": "إجمالي هذا الشهر",
+    "ledgerFee": "رسوم Omens",
+    "ledgerNet": "صافي ما هتقبضه",
+    "feeNote": "بناخد ٧٪ مقابل ضمان الميعاد وراحة بالك من الجباية."
+  },
+  "tenant": {
+    "greeting": "أهلاً يا مصطفى",
+    "subgreeting": "شقة ١٢ · هليوبوليس · مع فريدة م.",
+    "dueEyebrow": "إيجار شهر مايو",
+    "dueDate": "مستحق {date}",
+    "payNow": "ادفع الآن",
+    "payMethods": "إنستا باي · فودافون كاش · فوري",
+    "scoreEyebrow": "نقاط Omens بتاعتك",
+    "scoreLabelExcellent": "ممتاز",
+    "scoreLabelGood": "جيد",
+    "scoreLabelFair": "مقبول",
+    "scoreBody": "مستأجر موثوق. سجلك بيمشي معاك — كل مُلّاك شبكة Omens بيشوفوا مكانتك.",
+    "history": "سجل الدفعات",
+    "paidOn": "اتدفع {date}",
+    "thread": "محادثتك مع Omens",
+    "threadIntro": "هنكلمك في الإيجار بس. ولا تسويق ولا حاجة. وعد.",
+    "ramadanNote": "في رمضان أو وقت الضيق، عندنا خطط مرنة. كلّمنا.",
+    "trustWord": "أمانة",
+    "trustTagline": "أمانة بنوفّيها أول كل شهر."
+  },
+  "common": {
+    "currency": "ج.م",
+    "backToHome": "العودة للصفحة الرئيسية",
+    "viewLandlord": "شوف صفحة المالك",
+    "viewTenant": "شوف صفحة المستأجر"
+  },
+  "footer": {
+    "trustWord": "أمانة",
+    "tagline": "أمانة بنوفّيها أول كل شهر."
+  }
+}
