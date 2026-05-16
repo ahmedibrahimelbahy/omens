@@ -1,10 +1,18 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { formatNumerals } from "@/lib/numerals";
 import type { Locale } from "@/i18n/routing";
 
 const RENT = 4200;
+const INSTAPAY_IPN = "farida.mansour@instapay";
+
+const instapayUrl = (amount: number, ref: string) =>
+  `https://ipn.eg/pay?to=${encodeURIComponent(INSTAPAY_IPN)}&amount=${amount}&ref=${encodeURIComponent(ref)}`;
+
+const qrSrc = (data: string) =>
+  `https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&color=0d2240&bgcolor=fdf8f3&qzone=2&data=${encodeURIComponent(data)}`;
 
 type Message = {
   /** Days until due (negative = past due). */
@@ -131,7 +139,11 @@ function MessageBubble({
   rent: number;
   onPay?: () => void;
 }) {
+  const [qrOpen, setQrOpen] = useState(false);
   const savings = Math.round((rent * msg.discountPct) / 100);
+  const dueAmount = rent - savings;
+  const reference = `OMENS-MAY-2026-MA-${msg.discountPct}`;
+  const payUrl = instapayUrl(dueAmount, reference);
   const timeLabel = (() => {
     if (msg.daysOut === 0) return isAr ? "النهاردة" : "Today";
     if (msg.daysOut === 2) return isAr ? "من يومين" : "2 days ago";
@@ -177,44 +189,167 @@ function MessageBubble({
             </p>
           )}
 
-          {/* Savings + CTA row */}
-          <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-            <div className="flex items-center gap-2">
-              <span className="rounded-full bg-received-soft px-2.5 py-1 text-[11px] font-semibold text-received">
-                {isAr
-                  ? `وفّر ${num(savings)} ج.م`
-                  : `Save EGP ${num(savings)}`}
+          {/* Savings chips */}
+          <div className="mt-4 flex flex-wrap items-center gap-2">
+            <span className="rounded-full bg-received-soft px-2.5 py-1 text-[11px] font-semibold text-received">
+              {isAr
+                ? `وفّر ${num(savings)} ج.م`
+                : `Save EGP ${num(savings)}`}
+            </span>
+            <span className="text-[10px] uppercase tracking-wider text-gold-deep">
+              {isAr ? `خصم ${num(msg.discountPct)}٪` : `${num(msg.discountPct)}% off`}
+            </span>
+            <span className="ms-auto text-[10px] uppercase tracking-wider text-muted-fg">
+              {isAr ? "تدفع" : "You pay"}{" "}
+              <span className="font-mono text-ink">{num(dueAmount.toLocaleString("en-US"))}</span>{" "}
+              {isAr ? "ج.م" : "EGP"}
+            </span>
+          </div>
+
+          {/* InstaPay deep-link block */}
+          <div className="mt-3 grid gap-2">
+            <a
+              href={payUrl}
+              onClick={(e) => {
+                // For the demo we don't actually leave the page — trigger the
+                // success state instead so the user sees the discount applied.
+                e.preventDefault();
+                onPay?.();
+              }}
+              className="group flex items-center justify-between gap-3 rounded-2xl px-4 py-3 shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-lift"
+              style={{
+                background:
+                  "linear-gradient(135deg, #7B61FF 0%, #5B45CC 100%)",
+                color: "white",
+              }}
+            >
+              <span className="inline-flex items-center gap-3">
+                <InstaPayMark />
+                <span className="grid leading-tight">
+                  <span className="text-[10px] uppercase tracking-wider text-white/70">
+                    {isAr ? "ادفع عن طريق" : "Pay via"}
+                  </span>
+                  <span className="text-sm font-semibold">InstaPay</span>
+                </span>
               </span>
-              <span className="text-[10px] uppercase tracking-wider text-gold-deep">
-                {isAr ? `خصم ${num(msg.discountPct)}٪` : `${num(msg.discountPct)}% off`}
+              <span className="inline-flex items-center gap-2 text-[11px] text-white/80">
+                <span className="font-mono">{INSTAPAY_IPN}</span>
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 14 14"
+                  fill="none"
+                  className="arrow-flip"
+                >
+                  <path
+                    d="M5 3l4 4-4 4"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </span>
-            </div>
+            </a>
+
             <button
               type="button"
-              onClick={onPay}
-              className="group inline-flex items-center gap-2 rounded-full bg-ink px-4 py-1.5 text-[11px] font-medium text-cream transition-colors hover:bg-ink-soft"
+              onClick={() => setQrOpen((s) => !s)}
+              aria-expanded={qrOpen}
+              className="flex items-center justify-between gap-2 rounded-xl border border-line bg-paper px-3 py-2 text-[11px] font-medium text-ink hover:border-gold/50 transition-colors"
             >
-              <span>{isAr ? "ادفع دلوقتي" : "Pay now"}</span>
-              <svg
-                width="11"
-                height="11"
-                viewBox="0 0 14 14"
-                fill="none"
-                className="arrow-flip text-gold"
-              >
-                <path
-                  d="M5 3l4 4-4 4"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <span className="inline-flex items-center gap-2">
+                <QrIcon />
+                <span>
+                  {qrOpen
+                    ? isAr
+                      ? "اخفي الـ QR"
+                      : "Hide QR"
+                    : isAr
+                      ? "أو امسح QR للدفع"
+                      : "Or scan QR to pay"}
+                </span>
+              </span>
+              <span className="text-[10px] uppercase tracking-wider text-muted-fg">
+                {isAr ? "بأي تطبيق بنوك" : "Any banking app"}
+              </span>
             </button>
+
+            <AnimatePresence initial={false}>
+              {qrOpen && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  className="overflow-hidden"
+                >
+                  <div className="mt-1 flex flex-col items-center gap-2 rounded-2xl border border-line bg-paper p-4">
+                    {/* Real QR encoding the dummy InstaPay payload */}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={qrSrc(payUrl)}
+                      alt={isAr ? "كود QR للدفع عن طريق InstaPay" : "InstaPay QR code"}
+                      width={180}
+                      height={180}
+                      className="rounded-xl"
+                      style={{ background: "var(--cream)" }}
+                    />
+                    <p className="text-center text-[10px] leading-relaxed text-muted-fg">
+                      {isAr
+                        ? "افتح تطبيق البنك بتاعك واختار «امسح QR»"
+                        : "Open your banking app and choose 'Scan QR'"}
+                    </p>
+                    <code className="block w-full break-all text-center font-mono text-[9px] text-muted-fg">
+                      {payUrl}
+                    </code>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
         <p className="mt-1.5 px-2 text-[10px] text-muted-fg">{timeLabel}</p>
       </div>
     </motion.li>
+  );
+}
+
+function InstaPayMark() {
+  return (
+    <span
+      className="grid h-8 w-8 place-items-center rounded-lg bg-white/15 backdrop-blur-sm"
+      aria-hidden
+    >
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        {/* Simplified InstaPay-feel mark — diamond + spark */}
+        <path
+          d="M9 2L14 9L9 16L4 9L9 2z"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinejoin="round"
+          fill="none"
+          opacity="0.9"
+        />
+        <path
+          d="M9 6.5L11 9L9 11.5L7 9L9 6.5z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  );
+}
+
+function QrIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
+      <rect x="1.5" y="1.5" width="4" height="4" rx="0.5" stroke="currentColor" strokeWidth="1.2" />
+      <rect x="8.5" y="1.5" width="4" height="4" rx="0.5" stroke="currentColor" strokeWidth="1.2" />
+      <rect x="1.5" y="8.5" width="4" height="4" rx="0.5" stroke="currentColor" strokeWidth="1.2" />
+      <rect x="8.5" y="8.5" width="1.5" height="1.5" fill="currentColor" />
+      <rect x="11" y="8.5" width="1.5" height="1.5" fill="currentColor" />
+      <rect x="8.5" y="11" width="1.5" height="1.5" fill="currentColor" />
+      <rect x="11" y="11" width="1.5" height="1.5" fill="currentColor" />
+    </svg>
   );
 }
