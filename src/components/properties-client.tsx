@@ -16,6 +16,7 @@ type Props = {
 };
 
 type Beds = "any" | "1" | "2" | "3" | "4+";
+type Sort = "recommended" | "top-rated" | "most-reviewed" | "price-asc" | "price-desc";
 
 const PRICE_MIN = 5000;
 const PRICE_MAX = 25000;
@@ -28,9 +29,10 @@ export function PropertiesClient({ locale, properties, neighborhoods }: Props) {
   const [neighborhood, setNeighborhood] = useState<string>("any");
   const [beds, setBeds] = useState<Beds>("any");
   const [maxPrice, setMaxPrice] = useState<number>(PRICE_MAX);
+  const [sort, setSort] = useState<Sort>("recommended");
 
   const filtered = useMemo(() => {
-    return properties.filter((p) => {
+    const list = properties.filter((p) => {
       const hood = (isAr ? p.neighborhoodAr : p.neighborhoodEn).split(" · ")[0];
       if (neighborhood !== "any" && hood !== neighborhood) return false;
       if (beds === "1" && p.beds !== 1) return false;
@@ -40,16 +42,47 @@ export function PropertiesClient({ locale, properties, neighborhoods }: Props) {
       if (p.rent > maxPrice) return false;
       return true;
     });
-  }, [properties, neighborhood, beds, maxPrice, isAr]);
+
+    // Sort respects the rating shape added by the linter pass.
+    const ratingScore = (p: (typeof properties)[number]) =>
+      // Fall back gracefully if rating is missing on older seed entries.
+      (p as { rating?: { score: number } }).rating?.score ?? 0;
+    const ratingReviews = (p: (typeof properties)[number]) =>
+      (p as { rating?: { reviews: number } }).rating?.reviews ?? 0;
+
+    return [...list].sort((a, b) => {
+      switch (sort) {
+        case "top-rated":
+          return ratingScore(b) - ratingScore(a);
+        case "most-reviewed":
+          return ratingReviews(b) - ratingReviews(a);
+        case "price-asc":
+          return a.rent - b.rent;
+        case "price-desc":
+          return b.rent - a.rent;
+        case "recommended":
+        default:
+          // Weighted blend: rating × log(reviews + 1) — what most marketplaces
+          // call "recommended": rewards highly-rated AND well-reviewed homes.
+          const aScore = ratingScore(a) * Math.log(ratingReviews(a) + 1);
+          const bScore = ratingScore(b) * Math.log(ratingReviews(b) + 1);
+          return bScore - aScore;
+      }
+    });
+  }, [properties, neighborhood, beds, maxPrice, sort, isAr]);
 
   const clearFilters = () => {
     setNeighborhood("any");
     setBeds("any");
     setMaxPrice(PRICE_MAX);
+    setSort("recommended");
   };
 
   const filtersActive =
-    neighborhood !== "any" || beds !== "any" || maxPrice !== PRICE_MAX;
+    neighborhood !== "any" ||
+    beds !== "any" ||
+    maxPrice !== PRICE_MAX ||
+    sort !== "recommended";
 
   return (
     <main className="mx-auto max-w-[1240px] px-6 pb-32 pt-12 sm:px-10 sm:pt-16">
@@ -75,6 +108,69 @@ export function PropertiesClient({ locale, properties, neighborhoods }: Props) {
                   {t("clearFilters")}
                 </button>
               )}
+            </div>
+
+            {/* Sort by */}
+            <div className="mt-6">
+              <label className="text-[11px] uppercase tracking-wider text-muted-fg">
+                {isAr ? "ترتيب حسب" : "Sort by"}
+              </label>
+              <div className="mt-2 grid gap-1.5">
+                {(
+                  [
+                    {
+                      key: "recommended",
+                      label: isAr ? "موصى به" : "Recommended",
+                    },
+                    {
+                      key: "top-rated",
+                      label: isAr ? "الأعلى تقييماً" : "Top rated",
+                    },
+                    {
+                      key: "most-reviewed",
+                      label: isAr ? "الأكثر مراجعات" : "Most reviewed",
+                    },
+                    {
+                      key: "price-asc",
+                      label: isAr ? "السعر · من الأقل" : "Price · low to high",
+                    },
+                    {
+                      key: "price-desc",
+                      label: isAr ? "السعر · من الأعلى" : "Price · high to low",
+                    },
+                  ] as { key: Sort; label: string }[]
+                ).map((opt) => (
+                  <button
+                    key={opt.key}
+                    type="button"
+                    onClick={() => setSort(opt.key)}
+                    aria-pressed={sort === opt.key}
+                    className={`flex items-center justify-between rounded-lg border px-3 py-2 text-xs transition-colors ${
+                      sort === opt.key
+                        ? "border-gold bg-gold/8 text-ink"
+                        : "border-line-strong bg-paper text-ink-soft hover:border-gold/50 hover:text-ink"
+                    }`}
+                  >
+                    <span className="font-medium">{opt.label}</span>
+                    {sort === opt.key && (
+                      <span
+                        aria-hidden
+                        className="grid h-3.5 w-3.5 place-items-center rounded-full bg-gold text-cream"
+                      >
+                        <svg width="8" height="8" viewBox="0 0 10 10" fill="none">
+                          <path
+                            d="M2 5.2L4.2 7.4L8 3"
+                            stroke="currentColor"
+                            strokeWidth="1.7"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </span>
+                    )}
+                  </button>
+                ))}
+              </div>
             </div>
 
             {/* Neighborhood */}
