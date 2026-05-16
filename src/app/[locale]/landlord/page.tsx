@@ -68,8 +68,6 @@ export default async function LandlordPage({
   const num = (n: number | string) => formatNumerals(n, locale);
 
   const totalGross = APARTMENTS.reduce((s, a) => s + a.rent, 0);
-  const fee = Math.round(totalGross * 0.07);
-  const net = totalGross - fee;
   const daysUntilPayout = 6;
   const payoutDate = locale === "ar" ? "١ مايو" : "May 1";
 
@@ -97,59 +95,34 @@ export default async function LandlordPage({
                   "radial-gradient(800px 300px at 100% 0%, rgba(201,169,97,0.12), transparent 60%)",
               }}
             />
-            <div className="relative grid gap-10 sm:grid-cols-[1.4fr_1fr]">
-              <div>
-                <p className="text-eyebrow text-muted-fg">
-                  {t("landlord.ledgerWillBe")}
-                </p>
-                <div className="mt-4 flex items-baseline gap-4">
-                  <span className="font-display text-[clamp(3.5rem,2rem+5vw,6rem)] leading-none tracking-tight text-ink">
-                    {num(net.toLocaleString("en-US"))}
-                  </span>
-                  <span className="text-h4 font-medium text-ink-soft">
-                    {t("common.currency")}
-                  </span>
-                </div>
-                <p className="mt-4 text-sm text-muted-fg">
-                  {t("landlord.payoutIn", { days: num(daysUntilPayout) })} ·{" "}
-                  {t("landlord.payoutOn", { date: payoutDate })}
-                </p>
-                {/* Progress arc — visually anchors the countdown */}
-                <div className="mt-8 grid gap-2">
-                  <div className="h-1 w-full overflow-hidden rounded-full bg-line">
-                    <div
-                      className="h-full rounded-full bg-gold"
-                      style={{ width: `${((30 - daysUntilPayout) / 30) * 100}%` }}
-                    />
-                  </div>
-                  <div className="flex justify-between text-[10px] uppercase tracking-wider text-muted-fg">
-                    <span>{locale === "ar" ? "بداية الشهر" : "Start of cycle"}</span>
-                    <span>{locale === "ar" ? "يوم الصرف" : "Payout day"}</span>
-                  </div>
-                </div>
+            <div className="relative">
+              <p className="text-eyebrow text-muted-fg">
+                {t("landlord.ledgerWillBe")}
+              </p>
+              <div className="mt-4 flex items-baseline gap-4">
+                <span className="font-display text-[clamp(3.5rem,2rem+5vw,6rem)] leading-none tracking-tight text-ink">
+                  {num(totalGross.toLocaleString("en-US"))}
+                </span>
+                <span className="text-h4 font-medium text-ink-soft">
+                  {t("common.currency")}
+                </span>
               </div>
-
-              {/* Ledger breakdown */}
-              <div className="grid content-center gap-4 border-t border-line/80 pt-8 sm:border-l sm:border-t-0 sm:pl-10 sm:pt-0 rtl:sm:border-l-0 rtl:sm:border-r rtl:sm:pl-0 rtl:sm:pr-10">
-                <LedgerRow
-                  label={t("landlord.ledgerEarned")}
-                  value={`${num(totalGross.toLocaleString("en-US"))} ${t("common.currency")}`}
-                  muted
-                />
-                <LedgerRow
-                  label={t("landlord.ledgerFee")}
-                  value={`−${num(fee.toLocaleString("en-US"))} ${t("common.currency")}`}
-                  muted
-                />
-                <div className="my-1 h-px bg-line" />
-                <LedgerRow
-                  label={t("landlord.ledgerNet")}
-                  value={`${num(net.toLocaleString("en-US"))} ${t("common.currency")}`}
-                  emphasis
-                />
-                <p className="mt-2 text-xs leading-relaxed text-muted-fg">
-                  {t("landlord.feeNote")}
-                </p>
+              <p className="mt-4 text-sm text-muted-fg">
+                {t("landlord.payoutIn", { days: num(daysUntilPayout) })} ·{" "}
+                {t("landlord.payoutOn", { date: payoutDate })}
+              </p>
+              {/* Progress arc — visually anchors the countdown */}
+              <div className="mt-8 grid gap-2">
+                <div className="h-1 w-full overflow-hidden rounded-full bg-line">
+                  <div
+                    className="h-full rounded-full bg-gold"
+                    style={{ width: `${((30 - daysUntilPayout) / 30) * 100}%` }}
+                  />
+                </div>
+                <div className="flex justify-between text-[10px] uppercase tracking-wider text-muted-fg">
+                  <span>{locale === "ar" ? "بداية الشهر" : "Start of cycle"}</span>
+                  <span>{locale === "ar" ? "يوم الصرف" : "Payout day"}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -236,41 +209,6 @@ export default async function LandlordPage({
       </main>
 
       <Footer locale={locale} />
-    </div>
-  );
-}
-
-function LedgerRow({
-  label,
-  value,
-  muted,
-  emphasis,
-}: {
-  label: string;
-  value: string;
-  muted?: boolean;
-  emphasis?: boolean;
-}) {
-  return (
-    <div className="flex items-baseline justify-between gap-6">
-      <span
-        className={
-          emphasis
-            ? "text-eyebrow text-ink"
-            : "text-eyebrow " + (muted ? "text-muted-fg" : "text-ink-soft")
-        }
-      >
-        {label}
-      </span>
-      <span
-        className={
-          emphasis
-            ? "font-display text-h4 text-ink"
-            : "text-sm font-medium text-ink-soft"
-        }
-      >
-        {value}
-      </span>
     </div>
   );
 }
