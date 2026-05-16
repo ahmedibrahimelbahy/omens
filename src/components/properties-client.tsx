@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { formatNumerals } from "@/lib/numerals";
+import { PropertyPhotoCarousel } from "./property-photo-carousel";
 import type { Property } from "@/lib/properties";
 import type { Locale } from "@/i18n/routing";
 
@@ -212,6 +213,8 @@ function PropertyCard({
   const landlordName = isAr ? p.landlord.nameAr : p.landlord.name;
   const highlights = isAr ? p.highlightsAr : p.highlightsEn;
 
+  const accent = isAr ? p.accentAr : p.accentEn;
+
   return (
     <motion.li
       initial={{ opacity: 0, y: 10 }}
@@ -219,50 +222,41 @@ function PropertyCard({
       transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
     >
       <article className="group overflow-hidden rounded-2xl border border-line bg-surface-2 shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-lift">
-        {/* Photo placeholder — Picsum seeded for variety + Omens overlay */}
-        <div className="relative aspect-[5/3] overflow-hidden bg-cream-deep">
-          <img
-            src={`https://picsum.photos/seed/${p.imageSeed}/720/440`}
-            alt=""
-            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-          />
-          <div
-            aria-hidden
-            className="absolute inset-0 bg-gradient-to-t from-ink/45 via-ink/0 to-transparent"
-          />
-          <div
-            aria-hidden
-            className="absolute inset-0 opacity-30 mix-blend-multiply"
-            style={{ background: "var(--ink)" }}
-          />
-          <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-3 rtl:flex-row-reverse">
-            <span className="rounded-full bg-cream/95 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-ink shadow-soft">
-              {p.beds === 1 ? t("bedsOne") : t("beds", { n: num(p.beds) })} ·{" "}
-              {num(p.sqm)} {isAr ? "م²" : "sqm"}
-            </span>
-            {p.landlord.verified && (
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-received/95 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-cream shadow-soft">
-                <svg width="9" height="9" viewBox="0 0 9 9" fill="none">
-                  <path
-                    d="M1.5 4.5L3.5 6.5L7.5 2"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                {t("verifiedBadge")}
-              </span>
-            )}
-          </div>
-        </div>
+        <PropertyPhotoCarousel
+          seeds={p.imageSeeds}
+          unitName={p.unit}
+          isAr={isAr}
+          accent={accent}
+          verified={p.landlord.verified}
+          verifiedLabel={t("verifiedBadge")}
+        />
 
         <div className="p-6">
-          <p className="text-eyebrow text-gold-deep">{neighborhood}</p>
-          <h3 className="text-h4 mt-2 text-ink">{p.unit}</h3>
+          <div className="flex items-start justify-between gap-3">
+            <div className="min-w-0">
+              <p className="text-eyebrow text-gold-deep truncate">
+                {neighborhood}
+              </p>
+              <h3 className="text-h4 mt-2 truncate text-ink">{p.unit}</h3>
+            </div>
+            <Rating
+              score={p.rating.score}
+              reviews={p.rating.reviews}
+              num={num}
+              isAr={isAr}
+            />
+          </div>
+
+          <p className="mt-2 text-xs text-muted-fg">
+            {p.beds === 1 ? t("bedsOne") : t("beds", { n: num(p.beds) })}
+            <span aria-hidden className="mx-1.5">·</span>
+            {p.baths === 1 ? t("bathsOne") : t("baths", { n: num(p.baths) })}
+            <span aria-hidden className="mx-1.5">·</span>
+            {num(p.sqm)} {isAr ? "م²" : "sqm"}
+          </p>
 
           <ul className="mt-4 grid gap-1.5">
-            {highlights.map((h, i) => (
+            {highlights.slice(0, 3).map((h, i) => (
               <li
                 key={i}
                 className="flex items-start gap-2 text-xs text-ink-soft"
@@ -322,5 +316,37 @@ function PropertyCard({
         </div>
       </article>
     </motion.li>
+  );
+}
+
+function Rating({
+  score,
+  reviews,
+  num,
+  isAr,
+}: {
+  score: number;
+  reviews: number;
+  num: (n: number | string) => string;
+  isAr: boolean;
+}) {
+  return (
+    <div className="flex shrink-0 items-center gap-1 text-xs font-medium text-ink">
+      <svg
+        width="12"
+        height="12"
+        viewBox="0 0 12 12"
+        fill="currentColor"
+        className="text-gold-deep"
+        aria-hidden
+      >
+        <path d="M6 1l1.6 3.4L11 5l-2.6 2.4L9 11 6 9.2 3 11l.6-3.6L1 5l3.4-.6z" />
+      </svg>
+      <span>{num(score.toFixed(1))}</span>
+      <span className="text-muted-fg">
+        ({num(reviews)}
+        {isAr ? "" : ""})
+      </span>
+    </div>
   );
 }
