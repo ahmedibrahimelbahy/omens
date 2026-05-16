@@ -17,6 +17,7 @@ export async function ProductHeader({ locale, active }: Props) {
   const t = await getTranslations();
   const isAr = locale === "ar";
   const signInLabel = isAr ? "تسجيل دخول" : "Sign in";
+  const ctaLabel = isAr ? "ابدأ دلوقتي" : "Get started";
 
   const navItems = [
     {
@@ -64,7 +65,7 @@ export async function ProductHeader({ locale, active }: Props) {
             ))}
           </nav>
           <LocaleSwitch />
-          <HeaderAuth locale={locale} signInLabel={signInLabel} />
+          <HeaderAuth locale={locale} signInLabel={signInLabel} ctaLabel={ctaLabel} />
           <MobileNav
             items={navItems}
             ariaOpen={isAr ? "افتح القائمة" : "Open menu"}

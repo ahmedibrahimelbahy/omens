@@ -9,9 +9,11 @@ import type { Locale } from "@/i18n/routing";
 export function HeaderAuth({
   locale,
   signInLabel,
+  ctaLabel,
 }: {
   locale: Locale;
   signInLabel: string;
+  ctaLabel: string;
 }) {
   const { user, hydrated } = useCurrentUser();
   const [open, setOpen] = useState(false);
@@ -35,15 +37,41 @@ export function HeaderAuth({
     return <span className="h-9 w-9 rounded-full bg-line/40" aria-hidden />;
   }
 
-  // Logged out — show sign-in pill
+  // Logged out — secondary "Sign in" + primary "Get started" CTA.
+  // Sign in is for returning users; Get started is for the 90% of
+  // visitors who don't have an account yet.
   if (!user) {
     return (
-      <Link
-        href={`/${locale}/signin`}
-        className="rounded-full border border-line-strong bg-surface-2 px-4 py-2 text-xs font-medium text-ink hover:border-gold/60 hover:shadow-soft transition-all"
-      >
-        {signInLabel}
-      </Link>
+      <div className="flex items-center gap-2">
+        <Link
+          href={`/${locale}/signin`}
+          className="hidden rounded-full border border-line-strong bg-surface-2 px-4 py-2 text-xs font-medium text-ink hover:border-gold/60 hover:shadow-soft transition-all sm:inline-flex"
+        >
+          {signInLabel}
+        </Link>
+        <Link
+          href={`/${locale}/signup/landlord`}
+          className="group inline-flex items-center gap-1.5 rounded-full bg-gold px-4 py-2 text-xs font-medium text-ink shadow-soft transition-all hover:bg-gold-deep hover:text-cream hover:shadow-gold"
+        >
+          <span>{ctaLabel}</span>
+          <svg
+            width="11"
+            height="11"
+            viewBox="0 0 12 12"
+            fill="none"
+            className="arrow-flip transition-transform group-hover:translate-x-0.5"
+            aria-hidden
+          >
+            <path
+              d="M3 6h6m0 0L6 3m3 3L6 9"
+              stroke="currentColor"
+              strokeWidth="1.4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </Link>
+      </div>
     );
   }
 
