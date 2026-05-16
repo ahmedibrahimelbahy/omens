@@ -30,14 +30,24 @@ export async function ProductHeader({ locale, active }: Props) {
       active: active === "properties",
     },
     {
+      href: `/${locale}/invoices`,
+      label: isAr ? "الفواتير" : "Invoices",
+      active: false,
+    },
+    {
       href: `/${locale}/testimonials`,
       label: isAr ? "آراء" : "Stories",
       active: false,
     },
     {
-      href: `/${locale}/contract`,
-      label: isAr ? "العقد" : "Contract",
-      active: false,
+      href: `/${locale}/landlord`,
+      label: t("nav.landlord"),
+      active: active === "landlord",
+    },
+    {
+      href: `/${locale}/tenant`,
+      label: t("nav.tenant"),
+      active: active === "tenant",
     },
   ];
 
