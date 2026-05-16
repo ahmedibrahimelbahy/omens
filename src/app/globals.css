@@ -204,6 +204,31 @@ html[lang="ar"] body,
   font-weight: 700;
 }
 
+/* Arabic has no italic in Plex; the browser fakes it with shear, which is ugly.
+   Replace italic emphasis with a heavier weight + gold tint — same semantic role
+   (this matters), executed in a way that respects the script. */
+[lang="ar"] .italic,
+[lang="ar"] .font-display.italic {
+  font-style: normal;
+}
+[lang="ar"] .text-h1 .italic,
+[lang="ar"] .text-h2 .italic,
+[lang="ar"] .text-h3 .italic,
+[lang="ar"] .font-display.italic.text-h5 {
+  color: var(--gold-deep);
+  font-weight: 700;
+}
+
+/* Thndr/Breadfast register: tighter rhythm for Arabic body, slightly more
+   contrast in headlines. Less literary, more product. */
+[lang="ar"] body {
+  font-feature-settings: "kern", "ss01";
+}
+[lang="ar"] .text-h1,
+[lang="ar"] .text-h2 {
+  font-weight: 700;
+}
+
 /* ─────────────────────────────────────────────────────────────────────────────
    Decorative atmosphere — subtle paper-grain & gold whisper
    ───────────────────────────────────────────────────────────────────────────── */

@@ -4,40 +4,47 @@ import { LocaleSwitch } from "@/components/locale-switch";
 import { getTranslations } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
 
+type Active = "landlord" | "tenant" | "marketing" | "properties";
+
 type Props = {
   locale: Locale;
-  active?: "landlord" | "tenant" | "marketing";
+  active?: Active;
 };
 
 export async function ProductHeader({ locale, active }: Props) {
   const t = await getTranslations();
+  const item = (href: string, label: string, key: Active) => (
+    <Link
+      href={href}
+      className={
+        active === key
+          ? "text-ink"
+          : "text-ink-soft hover:text-ink transition-colors"
+      }
+    >
+      {label}
+    </Link>
+  );
+
   return (
     <header className="relative z-10 border-b border-line/60 bg-paper/80 backdrop-blur">
-      <div className="mx-auto flex max-w-[1240px] items-center justify-between px-6 py-5 sm:px-10 sm:py-6">
-        <Link href={`/${locale}`} className="block" aria-label="Omens">
-          <Logo size={132} variant="ink" lang={locale} />
+      <div className="mx-auto flex max-w-[1240px] items-center justify-between gap-4 px-5 py-4 sm:px-10 sm:py-6">
+        <Link href={`/${locale}`} className="block shrink-0" aria-label="Omens">
+          <Logo size={120} variant="ink" lang={locale} />
         </Link>
-        <div className="flex items-center gap-6 sm:gap-10">
-          <nav className="hidden items-center gap-6 text-sm text-ink-soft sm:flex">
-            <Link
-              href={`/${locale}/landlord`}
-              className={active === "landlord" ? "text-ink" : "hover:text-ink transition-colors"}
-            >
-              {t("nav.landlord")}
-            </Link>
-            <Link
-              href={`/${locale}/tenant`}
-              className={active === "tenant" ? "text-ink" : "hover:text-ink transition-colors"}
-            >
-              {t("nav.tenant")}
-            </Link>
-            <Link
-              href={`/${locale}`}
-              className={active === "marketing" ? "text-ink" : "hover:text-ink transition-colors"}
-            >
-              {t("nav.marketing")}
-            </Link>
+        <div className="flex items-center gap-5 sm:gap-8">
+          <nav className="hidden items-center gap-6 text-sm md:flex">
+            {item(`/${locale}`, t("nav.marketing"), "marketing")}
+            {item(`/${locale}/properties`, t("nav.properties"), "properties")}
+            {item(`/${locale}/landlord`, t("nav.landlord"), "landlord")}
+            {item(`/${locale}/tenant`, t("nav.tenant"), "tenant")}
           </nav>
+          <Link
+            href={`/${locale}/signup/landlord`}
+            className="hidden rounded-full bg-ink px-4 py-2 text-xs font-medium text-cream hover:bg-ink-soft transition-colors sm:inline-flex"
+          >
+            {t("nav.signupLandlord")}
+          </Link>
           <LocaleSwitch />
         </div>
       </div>

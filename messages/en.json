@@ -4,29 +4,138 @@
     "description": "Omens pays landlords on the 1st of every month — even if their tenant hasn't paid us yet. Every payment becomes a portable signal of trust."
   },
   "nav": {
-    "marketing": "Marketing",
+    "marketing": "Home",
     "landlord": "Landlord",
     "tenant": "Tenant",
+    "properties": "Find a home",
     "story": "Story",
-    "join": "Join the waitlist"
+    "join": "Join the waitlist",
+    "signupLandlord": "I'm a landlord",
+    "signupTenant": "I'm a tenant"
   },
   "hero": {
-    "eyebrow": "For landlords in Cairo",
+    "eyebrow": "For landlords & tenants in Cairo",
     "headlineA": "Rent on the 1st.",
     "headlineB": "Every month.",
     "headlineC": "Without the fight.",
-    "lede": "Omens pays your rent on the first of every month — even before your tenant has paid us. You collect peace of mind. We handle the rest.",
-    "cta": "Join the waitlist",
+    "lede": "Omens pays your rent on the first of every month — even before your tenant has paid us. Tenants who pay early get 5% off and a portable Omens Score that follows them across Cairo. Nobody chases. Nobody argues.",
+    "ctaLandlord": "I'm a landlord",
+    "ctaTenant": "I'm a tenant",
     "ctaHint": "Pilot starts in Cairo · Summer 2026"
   },
+  "vignette": {
+    "eyebrow": "The story",
+    "title": "Farida is 45. She owns four apartments in Heliopolis.",
+    "paragraphs": [
+      "Every month, collecting rent is a negotiation, a chase, a headache. She has no contracts that anyone respects. No system for tracking payments. No way to handle disputes without it getting personal.",
+      "Managing four apartments takes more of her time than her actual job. And she knows people who own twenty.",
+      "Omens exists so Farida doesn't have to be the collections department, the contract office, and the dispute referee for the rest of her life."
+    ],
+    "pullquote": "Her side hustle owns her evenings — and scaling feels impossible."
+  },
+  "howItWorks": {
+    "eyebrow": "How it works",
+    "title": "Three things change the day you join.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "You sign one lease.",
+        "body": "Tenant signs the digital lease through Omens. OTP-verified. Bilingual contract. Five minutes."
+      },
+      {
+        "number": "02",
+        "title": "We pay you on the 1st.",
+        "body": "Every month — InstaPay, Vodafone Cash, or bank transfer. We absorb the timing risk. You absorb a quiet morning."
+      },
+      {
+        "number": "03",
+        "title": "Trust becomes portable.",
+        "body": "Every payment builds (or damages) the tenant's Omens Score. Bad tenants become unrentable across the network. Good tenants get rewarded."
+      }
+    ]
+  },
+  "pillars": {
+    "eyebrow": "What you get",
+    "title": "Three promises. Kept on the first.",
+    "items": [
+      {
+        "title": "Guaranteed Payout",
+        "lede": "Rent in your wallet on the 1st of every month.",
+        "body": "Even if the tenant pays late. Even if they don't pay at all. Our Takaful pool covers the gap so you never feel it. You keep ~93% of rent. We keep ~7% in exchange for guaranteed timing and zero collection labor."
+      },
+      {
+        "title": "Pay-early discount",
+        "lede": "Tenants who pay 5+ days early get 5% off — paid for by Omens.",
+        "body": "We use float yield to fund the discount, so it costs you nothing. Tenants who pay early stay longer, refer better tenants, and build their Omens Score faster. The incentive aligns the whole network."
+      },
+      {
+        "title": "Omens Score",
+        "lede": "A portable credit score that follows the tenant.",
+        "body": "Every on-time payment, every dispute, every late month — recorded, weighted, scored 0–100. Landlords in the network see the score before approving. Bad tenants run out of places to hide. Good tenants get pre-approved."
+      }
+    ]
+  },
+  "forTenants": {
+    "eyebrow": "For tenants",
+    "title": "A rental record that follows you — and saves you money.",
+    "body": "Browse verified apartments from landlords who already trust Omens. Pay your rent in one tap, build a portable Omens Score, save 5% every time you pay early. No middleman. No awkward conversations. Just a calmer relationship with your home.",
+    "cta": "Find a home"
+  },
+  "pricing": {
+    "eyebrow": "Pricing",
+    "title": "One simple rate. No contracts.",
+    "rate": "7%",
+    "rateLabel": "of monthly rent",
+    "bullets": [
+      "Guaranteed payout on the 1st",
+      "Tenant Omens Score included",
+      "Pay-early discount funded by us, not you",
+      "Cancel any month, no penalties"
+    ],
+    "comparedTo": "Compared to ~15–20% you'd lose to vacancy, chasing, and disputes in a typical year."
+  },
+  "faq": {
+    "eyebrow": "Questions you might be asking",
+    "title": "The honest answers.",
+    "items": [
+      {
+        "q": "What happens if my tenant stops paying?",
+        "a": "Nothing — for you. We keep paying you on the 1st while we handle the collection through our Khalas grace process, payment plans, and (if needed) a three-person majlis dispute panel. The tenant's Omens Score absorbs the damage; you absorb a quiet morning."
+      },
+      {
+        "q": "How is this different from a real estate broker?",
+        "a": "A broker introduces a tenant and disappears. Omens stays — guaranteeing your rent, building your tenant's credit history, mediating disputes, and (eventually) helping you scale to ten or twenty units without losing your evenings."
+      },
+      {
+        "q": "Is this legal? Can the contract be enforced?",
+        "a": "Yes. We use Egyptian civil-law contracts that landlords and tenants both sign with OTP verification. The contracts are admissible in Egyptian courts, but in practice the Omens Score and majlis mediation resolve almost every dispute before it gets that far."
+      },
+      {
+        "q": "What about Ramadan?",
+        "a": "Tenants get one Ramadan flex per year — a one-month payment plan with no score impact and no fee. It's how we handle a real cultural moment with grace. You still get paid on the 1st."
+      },
+      {
+        "q": "What if I want to sell my apartment?",
+        "a": "You can. The Omens lease transfers cleanly to the new owner, or we'll help you negotiate the buyout. We never lock you into anything you wouldn't be able to do without us."
+      }
+    ]
+  },
+  "finalCta": {
+    "eyebrow": "Join the pilot",
+    "title": "Two doors. One promise.",
+    "subtitle": "Whether you own a unit in Heliopolis or you're searching for one — Omens is what comes next. Tell us where to find you.",
+    "landlordCard": {
+      "title": "I'm a landlord",
+      "body": "I own one or more units in Cairo and I want my rent on the 1st — without the chase.",
+      "cta": "Sign up as a landlord"
+    },
+    "tenantCard": {
+      "title": "I'm looking for a home",
+      "body": "I want to rent through Omens — pay on time, save 5%, build my Omens Score.",
+      "cta": "Sign up as a tenant"
+    }
+  },
   "system": {
-    "title": "Design system",
-    "subtitle": "The foundation",
-    "paragraph": "Every surface in Omens is built on a calm, three-color palette, an editorial type scale, and a quiet sense of restraint. The product carries weight without raising its voice.",
-    "swatchGold": "Gold — used sparingly",
-    "swatchInk": "Ink — body & headlines",
-    "swatchCream": "Cream — the base surface",
-    "swatchReceived": "Received — only for omen moments",
     "switchTo": "العربية"
   },
   "moment": {
@@ -80,14 +189,89 @@
     "trustWord": "Amana",
     "trustTagline": "A trust kept on the first of every month."
   },
+  "properties": {
+    "eyebrow": "Find a home",
+    "title": "Apartments by landlords who trust Omens.",
+    "subtitle": "Every listing here is verified. Every landlord is paid by Omens. Every tenant builds an Omens Score they carry with them.",
+    "filterTitle": "Refine",
+    "neighborhood": "Neighborhood",
+    "anyNeighborhood": "Any neighborhood",
+    "bedrooms": "Bedrooms",
+    "anyBeds": "Any",
+    "priceRange": "Monthly rent",
+    "trustOnly": "Verified landlords only",
+    "results": "{count} homes",
+    "resultsOne": "1 home",
+    "applyToRent": "Apply to rent",
+    "verifiedBadge": "Verified by Omens",
+    "beds": "{n} beds",
+    "bedsOne": "1 bed",
+    "baths": "{n} baths",
+    "bathsOne": "1 bath",
+    "sqm": "{n} sqm",
+    "perMonth": "/ month",
+    "noResults": "No homes match those filters. Try widening the price range or removing the neighborhood filter.",
+    "clearFilters": "Clear all"
+  },
+  "signup": {
+    "back": "Back",
+    "landlord": {
+      "eyebrow": "Sign up · landlord",
+      "title": "Hand over the worst part of being a landlord.",
+      "lede": "Tell us a little about your portfolio. We'll be in touch within 48 hours to set up your first guarantee.",
+      "nameLabel": "Your name",
+      "namePlaceholder": "e.g. Farida Mansour",
+      "whatsappLabel": "WhatsApp number",
+      "whatsappHint": "We'll text you — never call. Egyptian numbers only.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@example.com",
+      "neighborhoodLabel": "Neighborhood(s)",
+      "neighborhoodHint": "Where are your units? Comma-separate if multiple.",
+      "neighborhoodPlaceholder": "e.g. Heliopolis, New Cairo",
+      "unitsLabel": "How many units?",
+      "unitsHint": "Be honest — we work with everyone from 1 unit up.",
+      "submit": "Submit application",
+      "submitting": "Submitting…",
+      "success": "Thank you — we'll reach out within 48 hours.",
+      "successBody": "Check your WhatsApp. We're a small team; replies come from a real person."
+    },
+    "tenant": {
+      "eyebrow": "Sign up · tenant",
+      "title": "Build a rental record that follows you.",
+      "lede": "Quick details so we can match you with verified apartments and start your Omens Score on a clean slate.",
+      "nameLabel": "Your name",
+      "namePlaceholder": "e.g. Mostafa Abdelrahman",
+      "whatsappLabel": "WhatsApp number",
+      "whatsappHint": "We'll text you about apartments — never call.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@example.com",
+      "occupationLabel": "What do you do?",
+      "occupationHint": "Helps us match the right apartment. Doesn't affect your score.",
+      "occupationPlaceholder": "e.g. Product designer at a startup",
+      "budgetLabel": "Monthly budget",
+      "budgetHint": "Including utilities and Omens fees.",
+      "budgetPlaceholder": "e.g. 6,000 EGP",
+      "submit": "Create my Omens account",
+      "submitting": "Submitting…",
+      "success": "You're on the list.",
+      "successBody": "We'll text you when verified apartments matching your filters come online."
+    }
+  },
   "common": {
     "currency": "EGP",
-    "backToHome": "Back to marketing site",
+    "backToHome": "Back to home",
     "viewLandlord": "View the landlord",
     "viewTenant": "View the tenant"
   },
   "footer": {
     "trustWord": "Amana",
-    "tagline": "A trust kept on the first of every month."
+    "tagline": "A trust kept on the first of every month.",
+    "links": {
+      "landlord": "Landlord",
+      "tenant": "Tenant",
+      "properties": "Find a home",
+      "story": "Story"
+    },
+    "contact": "hello@omens.eg"
   }
 }
