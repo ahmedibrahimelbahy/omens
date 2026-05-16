@@ -40,8 +40,18 @@ export async function ProductHeader({ locale, active }: Props) {
           <nav className="hidden items-center gap-6 text-sm md:flex">
             {item(`/${locale}`, t("nav.marketing"), "marketing")}
             {item(`/${locale}/properties`, t("nav.properties"), "properties")}
-            {item(`/${locale}/landlord`, t("nav.landlord"), "landlord")}
-            {item(`/${locale}/tenant`, t("nav.tenant"), "tenant")}
+            <Link
+              href={`/${locale}/testimonials`}
+              className="text-ink-soft hover:text-ink transition-colors"
+            >
+              {isAr ? "آراء" : "Stories"}
+            </Link>
+            <Link
+              href={`/${locale}/contract`}
+              className="text-ink-soft hover:text-ink transition-colors"
+            >
+              {isAr ? "العقد" : "Contract"}
+            </Link>
           </nav>
           <LocaleSwitch />
           <HeaderAuth locale={locale} signInLabel={signInLabel} />

@@ -21,7 +21,28 @@
     "lede": "Omens pays your rent on the first of every month — even before your tenant has paid us. Tenants who pay early get 5% off and a portable Omens Score that follows them across Cairo. Nobody chases. Nobody argues.",
     "ctaLandlord": "I'm a landlord",
     "ctaTenant": "I'm a tenant",
-    "ctaHint": "Pilot starts in Cairo · Summer 2026"
+    "ctaHint": "Pilot starts in Cairo · Summer 2026",
+    "announce": "Now booking · Cairo pilot · Summer 2026"
+  },
+  "trust": {
+    "items": [
+      "0% commission for landlords",
+      "OTP-verified bilingual leases",
+      "Backed by a Takaful pool"
+    ]
+  },
+  "support": {
+    "trigger": "Talk to us",
+    "title": "We're right here.",
+    "lede": "Cairo hours, real humans. Average reply under 2 minutes.",
+    "whatsapp": "WhatsApp",
+    "whatsappHint": "Fastest — most people get a reply in seconds",
+    "email": "Email us",
+    "emailHint": "For longer questions or documents",
+    "phone": "Or call · 01000 000 000",
+    "close": "Close",
+    "aria": "Open support",
+    "status": "Online now"
   },
   "vignette": {
     "eyebrow": "The story",
@@ -57,11 +78,12 @@
   "pillars": {
     "eyebrow": "What you get",
     "title": "Three promises. Kept on the first.",
+    "badges": ["On the 1st", "Free for you", "Portable · 0–100"],
     "items": [
       {
         "title": "Guaranteed Payout",
         "lede": "Rent in your wallet on the 1st of every month.",
-        "body": "Even if the tenant pays late. Even if they don't pay at all. Our Takaful pool covers the gap so you never feel it. You keep ~93% of rent. We keep ~7% in exchange for guaranteed timing and zero collection labor."
+        "body": "Even if the tenant pays late. Even if they don't pay at all. Our Takaful pool covers the gap so you never feel it. One flat monthly fee covers everything — guaranteed timing, dispute mediation, and zero collection labor."
       },
       {
         "title": "Pay-early discount",
@@ -83,16 +105,40 @@
   },
   "pricing": {
     "eyebrow": "Pricing",
-    "title": "One simple rate. No contracts.",
-    "rate": "7%",
-    "rateLabel": "of monthly rent",
-    "bullets": [
-      "Guaranteed payout on the 1st",
-      "Tenant Omens Score included",
-      "Pay-early discount funded by us, not you",
-      "Cancel any month, no penalties"
-    ],
-    "comparedTo": "Compared to ~15–20% you'd lose to vacancy, chasing, and disputes in a typical year."
+    "title": "Two tracks. Pick the one that fits.",
+    "subscription": {
+      "eyebrow": "Track 01 · Subscription",
+      "title": "Flat monthly fee. No surprises.",
+      "lede": "One predictable charge per unit, tiered by your rent. Most landlords pay this.",
+      "tiers": [
+        { "rentRange": "Rent under 50,000 EGP", "price": "7,000 EGP", "priceLabel": "per month" },
+        { "rentRange": "Rent 50,000 — 100,000 EGP", "price": "10,000 EGP", "priceLabel": "per month" },
+        { "rentRange": "Rent over 100,000 EGP", "price": "15,000 EGP", "priceLabel": "per month" }
+      ],
+      "tiersHint": "Per unit. Bundle pricing available at 5+ units.",
+      "bullets": [
+        "Guaranteed payout on the 1st",
+        "Tenant Omens Score included",
+        "Pay-early discount funded by us",
+        "Cancel any month, no penalties"
+      ],
+      "cta": "Get started"
+    },
+    "managed": {
+      "eyebrow": "Track 02 · Full management",
+      "title": "We take the whole portfolio.",
+      "lede": "For landlords with 10+ units, mixed-use properties, or leases that need a hand on every door. We sit on your side of the table, end to end.",
+      "bullets": [
+        "On-site tenant vetting and onboarding",
+        "Quarterly portfolio health reviews",
+        "Direct ops support — phone, WhatsApp, in-person",
+        "Custom contracts and dispute mediation"
+      ],
+      "priceLabel": "Custom pricing",
+      "priceHint": "Tailored to your case — usually starts where Track 01 leaves off.",
+      "cta": "Book a demo"
+    },
+    "comparedTo": "Compared to ~15–20% of yearly rent you'd lose to vacancy, chasing, and disputes."
   },
   "faq": {
     "eyebrow": "Questions you might be asking",
@@ -167,7 +213,7 @@
     "ledgerEarned": "Earned this month",
     "ledgerFee": "Omens service",
     "ledgerNet": "You receive",
-    "feeNote": "We keep 7% in exchange for guaranteed timing and zero collection labor."
+    "feeNote": "A flat monthly fee in exchange for guaranteed timing and zero collection labor."
   },
   "tenant": {
     "greeting": "Hi, Mostafa",
