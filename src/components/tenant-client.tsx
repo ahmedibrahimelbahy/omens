@@ -804,7 +804,7 @@ function Pip({ filled }: { filled?: boolean }) {
 
 function Chevron() {
   return (
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="arrow-flip">
       <path
         d="M5 3l4 4-4 4"
         stroke="currentColor"

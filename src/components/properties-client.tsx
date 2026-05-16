@@ -307,9 +307,7 @@ function PropertyCard({
                 height="14"
                 viewBox="0 0 14 14"
                 fill="none"
-                style={{
-                  transform: isAr ? "scaleX(-1)" : "none",
-                }}
+                className="arrow-flip"
               >
                 <path
                   d="M5 3l4 4-4 4"

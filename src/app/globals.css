@@ -229,6 +229,11 @@ html[lang="ar"] body,
   font-weight: 700;
 }
 
+/* Direction-aware arrow utility: auto-flips inside an RTL context. */
+[dir="rtl"] .arrow-flip {
+  transform: scaleX(-1);
+}
+
 /* ─────────────────────────────────────────────────────────────────────────────
    Decorative atmosphere — subtle paper-grain & gold whisper
    ───────────────────────────────────────────────────────────────────────────── */
@@ -305,4 +310,114 @@ html[lang="ar"] body,
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Status pattern fills — payment/unit lifecycle encoding.
+   Solid = terminal (paid). Diagonal-stripe = indeterminate (pending / late /
+   reminder sent). Pattern recognition kicks in faster than label reading.
+   Borrowed from Dentamap's appointment grid.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.status-paid {
+  background-color: var(--received);
+  color: #fff;
+}
+.status-paid-soft {
+  background-color: var(--received-soft);
+  color: #047857;
+}
+
+.status-pending {
+  background-color: #d97706;
+  color: #fff;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent 0,
+    transparent 6px,
+    rgba(255, 255, 255, 0.32) 6px,
+    rgba(255, 255, 255, 0.32) 12px
+  );
+}
+.status-pending-soft {
+  background-color: #fef3c7;
+  color: #92400e;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent 0,
+    transparent 6px,
+    rgba(120, 53, 15, 0.06) 6px,
+    rgba(120, 53, 15, 0.06) 12px
+  );
+}
+
+.status-late {
+  background-color: #be123c;
+  color: #fff;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent 0,
+    transparent 6px,
+    rgba(255, 255, 255, 0.28) 6px,
+    rgba(255, 255, 255, 0.28) 12px
+  );
+}
+.status-late-soft {
+  background-color: #fee2e2;
+  color: #9f1239;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent 0,
+    transparent 6px,
+    rgba(159, 18, 57, 0.06) 6px,
+    rgba(159, 18, 57, 0.06) 12px
+  );
+}
+
+.status-disputed {
+  background-color: var(--muted);
+  color: var(--cream);
+}
+.status-disputed-soft {
+  background-color: rgba(138, 131, 120, 0.16);
+  color: var(--ink-soft);
+}
+
+.status-reminder {
+  background-color: var(--gold);
+  color: var(--ink);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent 0,
+    transparent 6px,
+    rgba(255, 255, 255, 0.42) 6px,
+    rgba(255, 255, 255, 0.42) 12px
+  );
+}
+.status-reminder-soft {
+  background-color: rgba(201, 169, 97, 0.14);
+  color: var(--gold-deep);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent 0,
+    transparent 6px,
+    rgba(163, 136, 66, 0.05) 6px,
+    rgba(163, 136, 66, 0.05) 12px
+  );
+}
+
+/* RTL: flip diagonal direction so the stripes lean with the reading direction */
+[dir="rtl"] .status-pending,
+[dir="rtl"] .status-pending-soft,
+[dir="rtl"] .status-late,
+[dir="rtl"] .status-late-soft,
+[dir="rtl"] .status-reminder,
+[dir="rtl"] .status-reminder-soft {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent 0,
+    transparent 6px,
+    rgba(255, 255, 255, 0.32) 6px,
+    rgba(255, 255, 255, 0.32) 12px
+  );
 }

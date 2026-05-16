@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ProductHeader } from "@/components/product-header";
 import { SiteFooter } from "@/components/site-footer";
 import { FaqAccordion } from "@/components/faq-accordion";
+import { Arrow } from "@/components/arrow";
 import { formatNumerals } from "@/lib/numerals";
 import type { Locale } from "@/i18n/routing";
 
@@ -57,10 +58,7 @@ export default async function HomePage({
             <span className="text-sm font-medium tracking-wide">
               {t("hero.ctaLandlord")}
             </span>
-            <span
-              aria-hidden
-              className="inline-block h-px w-6 bg-gold transition-all group-hover:w-10"
-            />
+            <Arrow tone="text-gold" />
           </Link>
           <Link
             href={`/${locale}/signup/tenant`}
@@ -69,10 +67,7 @@ export default async function HomePage({
             <span className="text-sm font-medium tracking-wide">
               {t("hero.ctaTenant")}
             </span>
-            <span
-              aria-hidden
-              className="inline-block h-px w-6 bg-gold transition-all group-hover:w-10"
-            />
+            <Arrow tone="text-gold" />
           </Link>
           <span className="ms-2 text-sm text-muted-fg">{t("hero.ctaHint")}</span>
         </div>
@@ -196,10 +191,7 @@ export default async function HomePage({
             className="group inline-flex items-center gap-3 rounded-full bg-ink px-7 py-4 text-cream shadow-lift transition-all hover:bg-ink-soft hover:shadow-gold"
           >
             <span className="text-sm font-medium">{t("forTenants.cta")}</span>
-            <span
-              aria-hidden
-              className="inline-block h-px w-6 bg-gold transition-all group-hover:w-10"
-            />
+            <Arrow tone="text-gold" />
           </Link>
         </div>
       </section>
@@ -306,10 +298,7 @@ export default async function HomePage({
                 </p>
                 <div className="mt-10 inline-flex items-center gap-3 text-sm font-medium">
                   <span>{t("finalCta.landlordCard.cta")}</span>
-                  <span
-                    aria-hidden
-                    className="inline-block h-px w-6 bg-gold transition-all group-hover:w-12"
-                  />
+                  <Arrow tone="text-gold" />
                 </div>
               </div>
             </Link>
@@ -335,10 +324,7 @@ export default async function HomePage({
                 </p>
                 <div className="mt-10 inline-flex items-center gap-3 text-sm font-medium text-ink">
                   <span>{t("finalCta.tenantCard.cta")}</span>
-                  <span
-                    aria-hidden
-                    className="inline-block h-px w-6 bg-gold transition-all group-hover:w-12"
-                  />
+                  <Arrow tone="text-gold" />
                 </div>
               </div>
             </Link>
