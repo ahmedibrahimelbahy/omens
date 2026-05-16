@@ -180,7 +180,10 @@
     "scoreLabelExcellent": "Excellent",
     "scoreLabelGood": "Good",
     "scoreLabelFair": "Fair",
+    "scoreLabelNew": "New to Omens",
+    "scoreBuilding": "Building",
     "scoreBody": "A trusted tenant. Your record is portable — landlords in the Omens network can see your standing.",
+    "scoreBodyNew": "You're at the start of your record. Every on-time payment becomes a portable signal — landlords in the Omens network will see it before approving.",
     "history": "Payment history",
     "paidOn": "Paid {date}",
     "thread": "Thread with Omens",
@@ -215,6 +218,8 @@
   },
   "signup": {
     "back": "Back",
+    "next": "Next",
+    "stepOf": "Step {n} of {total}",
     "landlord": {
       "eyebrow": "Sign up · landlord",
       "title": "Hand over the worst part of being a landlord.",
@@ -227,6 +232,7 @@
       "emailPlaceholder": "you@example.com",
       "neighborhoodLabel": "Neighborhood(s)",
       "neighborhoodHint": "Where are your units? Comma-separate if multiple.",
+      "neighborhoodChipsHint": "Tap any that apply. Phase 1 is live now; we'll text you when we reach yours.",
       "neighborhoodPlaceholder": "e.g. Heliopolis, New Cairo",
       "unitsLabel": "How many units?",
       "unitsHint": "Be honest — we work with everyone from 1 unit up.",

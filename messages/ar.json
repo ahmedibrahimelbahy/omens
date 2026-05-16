@@ -180,7 +180,10 @@
     "scoreLabelExcellent": "ممتاز",
     "scoreLabelGood": "كويس",
     "scoreLabelFair": "مقبول",
+    "scoreLabelNew": "جديد في Omens",
+    "scoreBuilding": "بيتبني",
     "scoreBody": "مستأجر موثوق. سجلك بيمشي معاك — كل ملاك Omens بيشوفوا مكانتك.",
+    "scoreBodyNew": "إنت في بداية سجلك. كل دفعة في معادها هتبقى إشارة ثقة بتمشي معاك — كل ملاك Omens هيشوفوها قبل ما يوافقوا.",
     "history": "سجل الدفعات",
     "paidOn": "اتدفع {date}",
     "thread": "Omens",
@@ -215,6 +218,8 @@
   },
   "signup": {
     "back": "رجوع",
+    "next": "التالي",
+    "stepOf": "الخطوة {n} من {total}",
     "landlord": {
       "eyebrow": "تسجيل · مالك",
       "title": "سلّم أصعب جزء.",
@@ -227,6 +232,7 @@
       "emailPlaceholder": "you@example.com",
       "neighborhoodLabel": "الأحياء",
       "neighborhoodHint": "شققك فين؟ فصل بفاصلة لو أكتر من حي.",
+      "neighborhoodChipsHint": "اختر أي حي ينطبق. المرحلة الأولى متاحة دلوقتي — هنكلمك أول ما نوصل لحيّك.",
       "neighborhoodPlaceholder": "مثال: هليوبوليس، التجمع",
       "unitsLabel": "كام وحدة؟",
       "unitsHint": "بنشتغل مع الكل. من وحدة لفوق.",

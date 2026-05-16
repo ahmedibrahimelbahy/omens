@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { LocaleSwitch } from "@/components/locale-switch";
+import { HeaderAuth } from "@/components/header-auth";
 import { getTranslations } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
 
@@ -13,6 +14,9 @@ type Props = {
 
 export async function ProductHeader({ locale, active }: Props) {
   const t = await getTranslations();
+  const isAr = locale === "ar";
+  const signInLabel = isAr ? "تسجيل دخول" : "Sign in";
+
   const item = (href: string, label: string, key: Active) => (
     <Link
       href={href}
@@ -27,25 +31,20 @@ export async function ProductHeader({ locale, active }: Props) {
   );
 
   return (
-    <header className="relative z-10 border-b border-line/60 bg-paper/80 backdrop-blur">
+    <header className="relative z-30 border-b border-line/60 bg-paper/80 backdrop-blur">
       <div className="mx-auto flex max-w-[1240px] items-center justify-between gap-4 px-5 py-4 sm:px-10 sm:py-6">
         <Link href={`/${locale}`} className="block shrink-0" aria-label="Omens">
           <Logo size={120} variant="ink" lang={locale} />
         </Link>
-        <div className="flex items-center gap-5 sm:gap-8">
+        <div className="flex items-center gap-4 sm:gap-7">
           <nav className="hidden items-center gap-6 text-sm md:flex">
             {item(`/${locale}`, t("nav.marketing"), "marketing")}
             {item(`/${locale}/properties`, t("nav.properties"), "properties")}
             {item(`/${locale}/landlord`, t("nav.landlord"), "landlord")}
             {item(`/${locale}/tenant`, t("nav.tenant"), "tenant")}
           </nav>
-          <Link
-            href={`/${locale}/signup/landlord`}
-            className="hidden rounded-full bg-ink px-4 py-2 text-xs font-medium text-cream hover:bg-ink-soft transition-colors sm:inline-flex"
-          >
-            {t("nav.signupLandlord")}
-          </Link>
           <LocaleSwitch />
+          <HeaderAuth locale={locale} signInLabel={signInLabel} />
         </div>
       </div>
     </header>
