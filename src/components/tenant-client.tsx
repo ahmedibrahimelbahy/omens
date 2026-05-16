@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { formatNumerals } from "@/lib/numerals";
+import { TenantChat } from "@/components/tenant-chat";
 import type { Locale } from "@/i18n/routing";
 
 const RENT = 4200;
@@ -108,6 +109,17 @@ export function TenantClient({ locale }: { locale: Locale }) {
         <h1 className="mt-3 text-h2 text-ink">{strings.greeting}</h1>
         <p className="text-lede mt-2 max-w-xl">{strings.subgreeting}</p>
       </motion.section>
+
+      {/* WhatsApp-style chat with the Omens bot — three tiered messages
+          showing the time-decay discount mechanic. Tapping any Pay now
+          triggers the same payment action as the rent-due card below. */}
+      <TenantChat
+        locale={locale}
+        onPay={() => {
+          setShowMethods(false);
+          setState("paid");
+        }}
+      />
 
       <div className="mt-10 grid gap-6 lg:grid-cols-[1.2fr_1fr] lg:gap-8">
         {/* ─── Rent due card (Apple Wallet pass aesthetic) ─── */}
